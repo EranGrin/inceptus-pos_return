@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="ies_pos_return_filter" model="ir.ui.view">
+            <field name="name">ies.pos.order.search.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']"
+                    position="replace">
+                    <field name="pos_reference" />
+                </xpath>
+                <xpath expr="//search/group[1]/filter[last()]"
+                    position="after">
+                    <filter string="Receipt Ref" domain="[]"
+                        context="{'group_by':'pos_reference'}" />
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <record id="ies_view_pos_return_form" model="ir.ui.view">
+            <field name="name">ies.pos.order.form.iherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="date_order" position="after">
+                    <field name="is_refundable" invisible="1"/>
+                    <field name="return_order" invisible="1"/>
+                    <field name="parent_order_id" attrs="{'invisible': [('return_order', '=', False)]}" readonly='1'/>
+                </field>
+                <xpath expr="//field[@name='lines']/tree/field[@name='qty']" position="after">
+                    <field name="parent_line_id" invisible="1"/>
+                    <field name="return_order_line" invisible="1"/>
+                    <field name="remaining_qty" attrs="{'invisible':[('return_order_line','=',True)]}"/>
+                </xpath>
+                
+                <xpath expr="//notebook" position="inside">
+                    <page name="return_orders" string="Return Orders">
+                        <group>
+                            <field name="child_order_ids" nolabel="1"/>
+                        </group>
+                    </page>
+                    
+                </xpath>
+                
+            </field>
+        </record>
+        
+       	<record id="ies_account_journal" model="ir.ui.view">
+            <field name="name">ies.account.journal</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_user']" position="after">
+                    <field name="allow_return" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>

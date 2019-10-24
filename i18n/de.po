@@ -1,0 +1,224 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#   * pos_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20130415-111315\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-31 13:03+0000\n"
+"PO-Revision-Date: 2014-12-31 13:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:131
+#, python-format
+msgid "No products available for return in selected order!"
+msgstr "Kein Artikel mehr verfügbar bei dieser Retour!"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:567
+#, python-format
+msgid "Please check quantity of selected product & sold product !"
+msgstr "Bitte Menge der ausgewählten Produkte überprüfen"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:56
+#, python-format
+msgid "Remaining:"
+msgstr "Übrig"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:62
+#, python-format
+msgid "Change:"
+msgstr "Wechselgeld"
+
+#. module: pos_return
+#: code:addons/pos_return/pos_order/pos.py:137
+#, python-format
+msgid "return"
+msgstr "Rückgabe"
+
+#. module: pos_return
+#: model:ir.model,name:pos_return.model_pos_order_line
+msgid "Lines of Point of Sale"
+msgstr "Auftragspositionen POS"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:554
+#: code:addons/pos_return/static/src/js/pos_return.js:688
+#, python-format
+msgid "Can not return more products !"
+msgstr "Keine weitere Rückgabe von Produkten"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:27
+#: code:addons/pos_return/static/src/xml/pos_return.xml:38
+#, python-format
+msgid "Reference Number :"
+msgstr "Referenznummer :"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:109
+#: code:addons/pos_return/static/src/js/pos_return.js:259
+#, python-format
+msgid "Order "
+msgstr "Verkauf"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:268
+#, python-format
+msgid "No tax available for return in selected order!"
+msgstr "Keine Steuer erhältlich für die Rückerstattung von diesem Kauf !"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:106
+#: code:addons/pos_return/static/src/js/pos_return.js:248
+#, python-format
+msgid "Validate"
+msgstr "Prüfen"
+
+#. module: pos_return
+#: code:addons/pos_return/pos_order/pos.py:130
+#, python-format
+msgid "No cash statement found for this session. Unable to record returned cash."
+msgstr "Keine Bargeld im Register für diese Sitzung gefunden. Bargeld nicht zurück zahlbar"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:50
+#, python-format
+msgid "Paid:"
+msgstr "Bezahlt"
+
+#. module: pos_return
+#: model:ir.model.fields,field_description:pos_return.field_pos_order_line_return_qty
+#: field:pos.order.line,return_qty:0
+msgid "Return QTY"
+msgstr "Retourmenge"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:68
+#, python-format
+msgid "Comment:"
+msgstr "Kommentar"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:162
+#: code:addons/pos_return/static/src/js/pos_return.js:177
+#: code:addons/pos_return/static/src/js/pos_return.js:305
+#: code:addons/pos_return/static/src/js/pos_return.js:322
+#, python-format
+msgid "Please enter correct reference number !"
+msgstr "Bitte um eine korrekte Eingabe der Referenznummer"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:189
+#: code:addons/pos_return/static/src/js/pos_return.js:331
+#, python-format
+msgid "Cancel"
+msgstr "Stonieren"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:77
+#: code:addons/pos_return/static/src/js/pos_return.js:208
+#, python-format
+msgid "Please pay current order!"
+msgstr "Bitte den Mehrwertsteuer Rückerstattungsverlauf beenden"
+
+#. module: pos_return
+#: model:ir.model.fields,field_description:pos_return.field_pos_order_parent_return_order
+#: field:pos.order,parent_return_order:0
+msgid "Return Order ID"
+msgstr "Rückgabe der Verkauf-ID"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:244
+#: code:addons/pos_return/static/src/xml/pos_return.xml:11
+#, python-format
+msgid "Return Tax"
+msgstr "Mehrwertsteuer Rückerstattung"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:577
+#, python-format
+msgid "Product is not in order list !"
+msgstr "Das Produkt ist nicht in der Bestellungsliste vorhanden"
+
+#. module: pos_return
+#: code:addons/pos_return/pos_order/pos.py:129
+#, python-format
+msgid "error!"
+msgstr "Fehler"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:102
+#, python-format
+msgid "Return Order"
+msgstr "Verkaufsrückgabe"
+
+#. module: pos_return
+#: model:ir.model.fields,field_description:pos_return.field_pos_order_return_seq
+#: field:pos.order,return_seq:0
+msgid "Return Sequence"
+msgstr "Retoursequenz"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:14
+#, python-format
+msgid "Return Mode"
+msgstr "Retourmodus"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/js/pos_return.js:80
+#: code:addons/pos_return/static/src/js/pos_return.js:134
+#: code:addons/pos_return/static/src/js/pos_return.js:165
+#: code:addons/pos_return/static/src/js/pos_return.js:180
+#: code:addons/pos_return/static/src/js/pos_return.js:211
+#: code:addons/pos_return/static/src/js/pos_return.js:271
+#: code:addons/pos_return/static/src/js/pos_return.js:308
+#: code:addons/pos_return/static/src/js/pos_return.js:325
+#: code:addons/pos_return/static/src/js/pos_return.js:557
+#: code:addons/pos_return/static/src/js/pos_return.js:570
+#: code:addons/pos_return/static/src/js/pos_return.js:580
+#: code:addons/pos_return/static/src/js/pos_return.js:691
+#, python-format
+msgid "Close"
+msgstr "schließen"
+
+#. module: pos_return
+#: model:ir.model,name:pos_return.model_pos_order
+msgid "Point of Sale"
+msgstr "Point of Sale"
+
+#. module: pos_return
+#. openerp-web
+#: code:addons/pos_return/static/src/xml/pos_return.xml:8
+#, python-format
+msgid "Sale Mode"
+msgstr "Verkaufmodus"
+

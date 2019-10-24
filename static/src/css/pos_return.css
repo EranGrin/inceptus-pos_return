@@ -1,0 +1,44 @@
+.selection-area {
+    height: 32px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7B7979), to(#393939));
+    background: -moz-linear-gradient(#7B7979, #393939);
+    background:  -ms-linear-gradient(#7B7979, #393939);
+    background:      linear-gradient(#7B7979, #393939);
+}
+
+.button_select {
+    border: 1px solid #AAA; 
+    color: #FFF; 
+    background: #666; 
+    margin-left: 5px; 
+    margin-right: 5px; 
+    cursor: pointer; 
+    padding: 2px 4px; 
+    border-radius: 4px; 
+    text-decoration: none;
+}
+
+.dashbuttons{
+	float: left;
+	display: inline-block;
+	line-height: 48px;
+	height: 48px;
+	min-width: 48px;
+    padding-right: 3px;
+    border-right: 1px solid #c5c5c5;
+    cursor: pointer;
+}
+
+.dashlabel {
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+.barcode_div{
+    margin-top: 25px;
+    border-top: 1px solid #a6a6a6;
+}
+#pos_order_code{
+	padding-top: 10px;
+}
+

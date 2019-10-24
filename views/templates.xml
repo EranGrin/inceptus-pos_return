@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="ies_assets" inherit_id="point_of_sale.assets" name="point_of_sale assets">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" type="text/css" href="/ies_pos_return/static/src/css/pos_return.css" />
+                <link rel="stylesheet" type="text/css" href="/ies_pos_return/static/src/css/dashboard.css" />
+                
+                
+            </xpath>
+            <xpath expr="//script[last()]" position="after">
+
+                <!--<script type="text/javascript" src="/ies_pos_return/static/lib/backbone_super/backbone_super.js"></script>-->
+                <script type="text/javascript" src="/ies_pos_return/static/src/lib/modernizr.js"></script>
+                <script type="text/javascript" src="/ies_pos_return/static/src/lib/jquery.dropdown.js"></script>
+                <script type="text/javascript" src="/ies_pos_return/static/src/lib/maskedinput.js"></script>
+                <script type="text/javascript" src="/ies_pos_return/static/src/js/pos_return.js"></script>
+            </xpath>
+        </template>
+</odoo>

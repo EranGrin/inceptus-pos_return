@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ProductScreenWidget">
+        <t t-jquery="tr.header-row" t-operation="before">
+            <!-- <header class='rightpane-header'>
+            <div class="breadcrumbs">
+                <span class="dashbuttons">
+                    <span class="breadcrumb-button breadcrumb-home js-category-switch">
+                        <i class='fa fa-shopping-bag'></i>
+                    </span> <span class="dashlabel">Sale</span>
+                </span>
+                <span class="dashbuttons">
+                    <span class="breadcrumb-button breadcrumb-home js-category-switch">
+                        <i class='fa fa-reply'></i>
+                    </span> <span class="dashlabel">Return</span>
+                </span>
+            </div>
+            </header> -->
+            <!-- <tr class="selection-area">
+                <td style="padding-top: 7px;padding-left: 5px;">
+                    <span class='button_select' id="sale_mode" style="background: blue;">
+                       Sale Mode
+                    </span>
+                    <span class='button_select' id="return_order">
+                       Return Mode
+                    </span>
+                    <span id="return_order_ref" style="color: #FFF;">
+                    </span>
+                </td>
+            </tr> -->
+        </t>
+    </t>
+    
+    <t t-extend="Chrome">
+        <t t-jquery="span.placeholder-OrderSelectorWidget" t-operation="before">
+            <section class="main clearfix">
+                <div class="fleft">
+                    <select id="cd-dropdown" name="cd-dropdown" class="cd-select">
+                        <option value="1" class="icon-shop" selected="selected">Sale</option>
+                        <option value="2" class="icon-return">Return</option>
+                    </select>
+                </div>
+            </section>
+        </t>
+    </t>
+    
+    <t t-name="OrderSelectorWidget">
+        <div class="order-selector">
+            <span class="orders touch-scrollable">
+
+                <t t-foreach="widget.pos.get_order_list()" t-as="order">
+                    <t t-if='order === widget.pos.get_order()'>
+                        <span class="order-button select-order selected" t-att-data-uid="order.uid">
+                            <span class='order-sequence'>
+                                <t t-esc='order.sequence_number' />
+                            </span>
+                            <t t-if="order.pos_mode === 'return'"><t t-esc="order.return_order.ref"/></t>
+                            <t t-esc="moment(order.creation_date).format('hh:mm')"/>
+                        </span>
+                    </t>
+                    <t t-if='order !== widget.pos.get_order()'>
+                        <span class="order-button select-order" t-att-data-uid="order.uid">
+                            <span class='order-sequence'>
+                                <t t-esc='order.sequence_number' />
+                                <t t-if="order.pos_mode === 'return'"><t t-esc="order.return_order.ref"/></t>
+                            </span>
+                        </span>
+                    </t>
+                </t>
+            </span>
+            <span class="order-button square neworder-button">
+                <i class='fa fa-plus' />
+            </span>
+            <span class="order-button square deleteorder-button">
+                <i class='fa fa-minus' />
+            </span>
+        </div>
+    </t>
+    
+    <t t-name="ReturnOrderWidget">
+        <div class='line-list-container'>
+            <div class="product-list-scroller touch-scrollable">
+                <div class="line-list">
+                </div>
+            </div>
+            <span class="placeholder-ScrollbarWidget" />
+        </div>
+    </t>
+    
+    
+    <t t-name="pos-return-order">
+        <table align="center">
+            <tr>
+                <td>Reference Number : </td>
+                <td style="padding-left: 5px;">
+                    <input type="text" name="return_order_number" id="return_order_number" value="" style="width: 180px;"/>
+                </td>
+            </tr>
+        </table>
+    </t>
+    
+    
+    <t t-name="Product">
+        <t t-jquery=".product" t-operation="replace">
+            <span class='product' t-att-data-product-id="product.id" t-att-data-line-id="product.line_id">
+                <div class="product-img">
+                    <img t-att-src='image_url' /> 
+                    <t t-if="!product.to_weight">
+                        <span class="price-tag">
+                            <t t-if='product.rqty'><t t-esc='product.rqty'></t> x </t><t t-esc="widget.format_currency(product.price,'Product Price')"/>
+                        </span>
+                    </t>
+                    <t t-if="product.to_weight">
+                        <span class="price-tag">
+                            <t t-if='product.rqty'><t t-esc='product.rqty'></t> x </t><t t-esc="widget.format_currency(product.price,'Product Price')+'/'+widget.pos.units_by_id[product.uom_id[0]].name"/>
+                        </span>
+                    </t>
+                </div>
+                <div class="product-name">
+                    <t t-esc="product.display_name"/>
+                </div>
+            </span>
+        </t>
+    </t>
+    
+    <t t-name="POSMessage">
+        <div class="modal-dialog">
+            <div class="popup popup-alert" style="height: 200px;">
+                <p class="title"><t t-esc=" widget.options.title || 'Error' " /></p>
+                <p class="body"><t t-esc=" widget.options.body || '' "/></p>
+                <div class="footer">
+                    <div class="button cancel">
+                        Ok
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+    <t t-name="POSReturnTemplate">
+        <div class="modal-dialog">
+            <div class="popup popup-return" style="width: 400px;height: 220px;">
+                <p class="title">Enter Order Reference
+                </p>
+                <p class="body">
+                <input type="text" name="return_order_number" id="return_order_number" placeholder="XXXXX-XXX-XXXX" style="width: 235px;text-align:center"/>
+                </p>
+                <div class="footer centered">
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                    <div class="button confirm">
+                        Ok
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+    <t t-name="pos-return-tax">
+        <table align="center">
+            <tr>
+                <td>Reference Number : </td>
+                <td style="padding-left: 5px;">
+                    <input type="text" name="return_order_number" id="return_order_number" value="" style="width: 180px;"/>
+                </td>
+            </tr>
+        </table>
+    </t>
+    
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.pos-step-container div.pos-payment-container div.footer" t-operation="replace">
+            <div class="footer">
+                <div class="infoline">
+                    <span class='left-block'>
+                        Paid:
+                    </span>
+                    <span class='right-block' id="payment-paid-total"></span>
+                </div>
+                <div class="infoline">
+                    <span class='left-block'>
+                        Remaining:
+                    </span>
+                    <span class='right-block' id="payment-remaining"></span>
+                </div>
+                <div class="infoline" >
+                    <span class='left-block'>
+                        Change:
+                    </span>
+                    <span class='right-block' id="payment-change"></span>
+                </div>
+                <div class="infoline" >
+                    <span class='left-block'>
+                        Comment:
+                    </span>
+                    <span class='right-block' style="vertical-align: top;" id="remark">
+                        <textarea style="width: 100%;" rows="3" name='remark' id='pos-remark'></textarea>
+                    </span>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <t t-name="templatebarcode">
+        <table>
+            <tbody>
+                <tr id="barcode1">
+                    <td style='padding:2px 2px 2px 0px; text-align:center;'>
+                        <div id="xml_receipt_barcode" t-att-class='barcode' width='150' height='50'/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </t>
+    
+    <t t-extend="PosTicket">
+        <t t-jquery="div.pos-center-align" t-operation="replace">
+            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/><t t-if="order.pos_mode == 'return'"> <br/>Return </t>
+            <t t-esc="order.name"/></div>
+        </t>
+        <!--<t t-jquery="div.pos-sale-ticket" t-operation="append">-->
+            <!--<div style="text-align: center;">-->
+                <!--<div id="barcode_div" width="280" height="80">-->
+                    <!--<div id="barcode_div" width='250' height='30'/>-->
+                <!--</div>-->
+            <!--</div>-->
+	    <!--</t>-->
+    </t>
+
+    <!--<t t-extend="XmlReceipt">-->
+        <!--<t t-jquery=".before-footer" t-operation="after">-->
+           <!--<t t-if='receipt.barcode_src'>-->
+                <!--<img t-att-src="receipt.barcode_src"/>-->
+            <!--</t>-->
+        <!--</t>-->
+    <!--</t>-->
+
+    
+</templates>
