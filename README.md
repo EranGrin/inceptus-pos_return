@@ -3,11 +3,9 @@
 Returning an order in a more convenient way is something which every customer strives for in today's world. As after standing in a long queue, customers desire that the user at the POS consumes less time to return their product. Hence, we have our module POS Order Return, which has the feature to return the order at ease and in a more convenient manner with allied features.
 
 POS Return, is one of the basic functions the any modern POS SYSTEM have 
-
 At present, the only option to return an item in odoo is through a tedious flow in the backend of the system.
 
 We build our solution based on industrial POS standards. The POS Return Module 
-
 Give a convenient approach to handle the return of an item through the front end of the POS Interface
 
 -------
