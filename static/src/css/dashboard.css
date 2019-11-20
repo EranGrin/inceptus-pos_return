@@ -6,7 +6,7 @@
 .cd-select {
 	position: relative;
 	width: 50px;
-	/*margin: 20px auto;*/
+	margin: 20px auto;
 	display: block;
 }
 

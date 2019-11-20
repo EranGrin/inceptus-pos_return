@@ -30,18 +30,18 @@ class PosOrder(models.Model):
     return_seq = fields.Integer('Return Sequence')
     refund_order_id = fields.Many2one('pos.order', 'Refund Order')  # need to remove replaced with parent order_id
     is_refundable = fields.Selection(selection=[('yes', 'yes'), ('no', 'no')],
-                                     string="Is Refundable", compute=_get_is_refundable)
+                                     string="Is Refundable", default='yes')
 
     parent_order_id = fields.Many2one('pos.order', 'Return Order for')
     child_order_ids = fields.One2many('pos.order', 'parent_order_id', 'Child Orders')
     lines = fields.One2many('pos.order.line', 'order_id', string='Order Lines', states={'draft': [('readonly', False)]},
                             readonly=True, copy=False)
 
-    @api.multi
+    # @api.multi
     def refund(self):
         return super(PosOrder, self.with_context(clone=1)).refund()
 
-    @api.multi
+    # @api.multi
     def copy(self, default=None):
         self.ensure_one()
         order = self
@@ -64,7 +64,7 @@ class PosOrder(models.Model):
         return res
 
     # write same product line merge function
-    @api.multi
+    # @api.multi
     def get_return_order(self):
         """method used to load the products on the pos while return"""
         product_ids, line_list = [], []
@@ -105,9 +105,9 @@ class PosOrder(models.Model):
         return res
 
     @api.model
-    def create_from_ui(self, orders):
-        res = super(PosOrder, self).create_from_ui(orders)
-        for order in self.browse(res):
+    def create_from_ui(self, orders, draft=False):
+        res = super(PosOrder, self).create_from_ui(orders, draft=draft)
+        for order in self.browse(res[0].get('id')):
             if not order.parent_order_id:
                 continue
             for payment in order.statement_ids:
@@ -134,15 +134,15 @@ class PosOrderLine(models.Model):
     _name = "pos.order.line"
     _inherit = ["pos.order.line", "ies.base"]
 
-    def _order_line_fields(self, line):
-        res = super(PosOrderLine, self)._order_line_fields(line)
+    def _order_line_fields(self, line, session_id=None):
+        res = super(PosOrderLine, self)._order_line_fields(line, session_id=session_id)
         if self._context.get("return_order"):
             if line and line[2].get('qty'):
                 line[2]['qty'] = line[2]['qty'] * -1.0
         return res
 
     @api.depends('child_line_ids', 'order_id.child_order_ids')
-    @api.multi
+    # @api.multi
     def _remaining_qty(self):
         res = 0.0
         for line in self:

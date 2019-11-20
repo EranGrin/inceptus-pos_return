@@ -1,4 +1,4 @@
-odoo.define('ies_pos_return.screens', function (require) {
+odoo.define('inceptus-pos_return.screens', function (require) {
 	"use strict";
 	
 	var chrome = require('point_of_sale.chrome');
@@ -7,7 +7,7 @@ odoo.define('ies_pos_return.screens', function (require) {
     var gui = require('point_of_sale.gui');
     var models = require('point_of_sale.models');
     var PosBaseWidget = require('point_of_sale.BaseWidget');
-    var PopupWidget = require('point_of_sale.popups');
+    var PopupWidget = require('point_of_sale.PopupWidget');
     var Model = require('web.DataModel');
     var _t = core._t;
     var QWeb = core.qweb;
