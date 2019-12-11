@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <template id="inceptus-pos_return_assets" inherit_id="point_of_sale.assets" name="point_of_sale assets">
-            <xpath expr="//link[last()]" position="after">
-                <link rel="stylesheet" href="/inceptus-pos_return/static/src/css/pos_return.css" />
-                <link rel="stylesheet" href="/inceptus-pos_return/static/src/css/dashboard.css" />
-                
-                
-            </xpath>
-            <xpath expr="//script[last()]" position="after">
 
-                <!--<script type="text/javascript" src="/inceptus-pos_return/static/lib/backbone_super/backbone_super.js"></script>-->
-                <script type="text/javascript" src="/inceptus-pos_return/static/src/lib/modernizr.js"></script>
-                <script type="text/javascript" src="/inceptus-pos_return/static/src/lib/jquery.dropdown.js"></script>
-                <script type="text/javascript" src="/inceptus-pos_return/static/src/lib/maskedinput.js"></script>
-                <script type="text/javascript" src="/inceptus-pos_return/static/src/js/pos_return.js"></script>
-            </xpath>
-        </template>
+    <template id="ies_assets_css" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/inceptus-pos_return/static/src/css/pos_return.css" />
+            <link rel="stylesheet" type="text/css" href="/inceptus-pos_return/static/src/css/dashboard.css" />
+        </xpath>
+    </template>
+
+    <template id="ies_assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/inceptus-pos_return/static/src/lib/jquery.dropdown.js"></script>
+            <script type="text/javascript" src="/inceptus-pos_return/static/src/lib/modernizr.js"></script>
+            <script type="text/javascript" src="/inceptus-pos_return/static/src/lib/maskedinput.js"></script>
+            <script type="text/javascript" src="/inceptus-pos_return/static/src/js/pos_return.js"></script>
+            
+        </xpath>
+    </template>
 </odoo>

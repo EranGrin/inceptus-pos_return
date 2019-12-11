@@ -1,59 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <record id="ies_pos_return_filter_inherit" model="ir.ui.view">
-            <field name="name">ies.pos.order.search.inherit.view</field>
-            <field name="model">pos.order</field>
-            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="replace">
-                    <field name="pos_reference" />
-                </xpath>
-                <!-- <xpath expr="//group" position="inside">
-                    <filter string="Receipt Ref" domain="[]"
-                        context="{'group_by':'pos_reference'}" />
-                </xpath> -->
+    <record id="ies_pos_order_filter_inherit" model="ir.ui.view">
+        <field name="name">pos.order.filter.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="pos_reference" />
+            </xpath>
+            <!-- <xpath expr="//search/group/filter[last()]" position="after">
+                <filter string="Receipt Ref" domain="[]"
+                    context="{'group_by':'pos_reference'}" />
+            </xpath> -->
+        </field>
+    </record>
+    <record id="ies_view_pos_return_form" model="ir.ui.view">
+        <field name="name">inceptus.pos.order.form.iherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                <field name="is_refundable" invisible="1"/>
+                <field name="return_order" invisible="1"/>
+                <field name="parent_order_id" attrs="{'invisible': [('return_order', '=', False)]}" readonly='1'/>
             </field>
-        </record>
-        
-        
-        <record id="ies_view_pos_return_form" model="ir.ui.view">
-            <field name="name">ies.pos.order.form.iherit</field>
-            <field name="model">pos.order</field>
-            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
-            <field name="arch" type="xml">
-                <field name="date_order" position="after">
-                    <field name="is_refundable" invisible="1"/>
-                    <field name="return_order" invisible="1"/>
-                    <field name="parent_order_id" attrs="{'invisible': [('return_order', '=', False)]}" readonly='1'/>
-                </field>
-                <xpath expr="//notebook/page[1]/field[@name='lines']/tree/field[@name='qty']" position="after">
-                    <field name="parent_line_id" invisible="1"/>
-                    <field name="return_order_line" invisible="1"/>
-                    <field name="remaining_qty" attrs="{'invisible':[('return_order_line','=',True)]}"/>
-                </xpath>
-                
-                <xpath expr="//notebook" position="inside">
-                    <page name="return_orders" string="Return Orders">
-                        <group>
-                            <field name="child_order_ids" nolabel="1"/>
-                        </group>
-                    </page>
-                    
-                </xpath>
-                
-            </field>
-        </record>
-
-       <record id="ies_account_journal" model="ir.ui.view">
-            <field name="name">ies.account.journal</field>
-            <field name="model">account.journal</field>
-            <field name="inherit_id" ref="account.view_account_journal_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='type']" position="after">
-                    <field name="allow_return" />
-                </xpath>
-            </field>
-        </record>
-
+            <xpath expr="//field[@name='lines']/tree/field[@name='qty']" position="after">
+                <field name="parent_line_id" invisible="1"/>
+                <field name="return_order_line" invisible="1"/>
+                <field name="remaining_qty" attrs="{'invisible':[('return_order_line','=',True)]}"/>
+            </xpath>
+            
+            <xpath expr="//notebook" position="inside">
+                <page name="return_orders" string="Return Orders">
+                    <group>
+                        <field name="child_order_ids" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="ies_account_journal" model="ir.ui.view">
+        <field name="name">inceptus.account.journal</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="allow_return" />
+            </xpath>
+        </field>
+    </record>
 </odoo>

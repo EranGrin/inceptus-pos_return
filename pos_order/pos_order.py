@@ -37,11 +37,11 @@ class PosOrder(models.Model):
     lines = fields.One2many('pos.order.line', 'order_id', string='Order Lines', states={'draft': [('readonly', False)]},
                             readonly=True, copy=False)
 
-    # @api.multi
+    @api.model
     def refund(self):
         return super(PosOrder, self.with_context(clone=1)).refund()
 
-    # @api.multi
+    @api.model
     def copy(self, default=None):
         self.ensure_one()
         order = self
@@ -64,21 +64,21 @@ class PosOrder(models.Model):
         return res
 
     # write same product line merge function
-    # @api.multi
+    # @api./
     def get_return_order(self):
         """method used to load the products on the pos while return"""
         product_ids, line_list = [], []
         product_fields = ["barcode", "default_code", "description", "description_sale", "display_name", "list_price",
-                          "pos_categ_id", "price", "product_tmpl_id", "taxes_id", "to_weight", "tracking", "uom_id", 'is_coupon']
+                          "pos_categ_id", "price", "product_tmpl_id", "taxes_id", "to_weight", "tracking", "uom_id",] #'is_coupon'
         line_fields = ['remaining_qty', 'return_qty', 'qty', 'id', 'price_unit', 'discount', 'price_subtotal',
                        'product_id']
         for line in self.lines:
             add_product = True
-            try:
-                if line.product_id.is_coupon:
-                    add_product = False
-            except:
-                pass
+            # try:
+            #     if line.product_id.is_coupon:
+            #         add_product = False
+            # except:
+            #     pass
             if line.remaining_qty > 0 and add_product:
                 line_data = line.product_id.read(product_fields)[0]
                 line_data.update({'line_id': line.id, 'price': line.price_unit, 'rqty': line.qty, 'clean_cache': 1})
@@ -98,7 +98,7 @@ class PosOrder(models.Model):
                     statement[2]['amount'] = statement[2].get('amount') * -1
             res.update({'return_order': 1,
                         'parent_order_id': ui_order['parent_order_id'],
-                        'pos_reference': 'Return ' + res.get('name'),
+                        'pos_reference': 'Return ' + res.get('pos_reference'),
                         'amount_return': ui_order['amount_paid'],
                         'amount_paid': 0.0,
                         })
@@ -107,10 +107,10 @@ class PosOrder(models.Model):
     @api.model
     def create_from_ui(self, orders, draft=False):
         res = super(PosOrder, self).create_from_ui(orders, draft=draft)
-        for order in self.browse(res[0].get('id')):
+        for order in self.browse(res[0].get('id', False)):
             if not order.parent_order_id:
                 continue
-            for payment in order.statement_ids:
+            for payment in order.payment_ids:
                 payment_vals = {
                     'journal_id': payment.journal_id.id,
                     'payment_method_id': self.env.ref('account.account_payment_method_manual_out').id,
@@ -142,7 +142,7 @@ class PosOrderLine(models.Model):
         return res
 
     @api.depends('child_line_ids', 'order_id.child_order_ids')
-    # @api.multi
+    @api.model
     def _remaining_qty(self):
         res = 0.0
         for line in self:

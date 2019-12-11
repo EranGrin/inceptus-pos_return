@@ -166,6 +166,10 @@
 			var self = this;
 			this.dd.toggleClass( 'cd-active' );
 			this.listopts.css( 'height', ( this.optsCount + 1 ) * ( this.size.height + this.options.gutter ) );
+			this.listopts.css( 'position', 'fixed');
+			this.listopts.css( 'margin-top', '3px');
+			this.listopts.css( 'z-index', '99');
+			
 			this.opts.each( function( i ) {
 
 				$( this ).css( {

@@ -3,32 +3,6 @@
 
     <t t-extend="ProductScreenWidget">
         <t t-jquery="tr.header-row" t-operation="before">
-            <!-- <header class='rightpane-header'>
-            <div class="breadcrumbs">
-                <span class="dashbuttons">
-                    <span class="breadcrumb-button breadcrumb-home js-category-switch">
-                        <i class='fa fa-shopping-bag'></i>
-                    </span> <span class="dashlabel">Sale</span>
-                </span>
-                <span class="dashbuttons">
-                    <span class="breadcrumb-button breadcrumb-home js-category-switch">
-                        <i class='fa fa-reply'></i>
-                    </span> <span class="dashlabel">Return</span>
-                </span>
-            </div>
-            </header> -->
-            <!-- <tr class="selection-area">
-                <td style="padding-top: 7px;padding-left: 5px;">
-                    <span class='button_select' id="sale_mode" style="background: blue;">
-                       Sale Mode
-                    </span>
-                    <span class='button_select' id="return_order">
-                       Return Mode
-                    </span>
-                    <span id="return_order_ref" style="color: #FFF;">
-                    </span>
-                </td>
-            </tr> -->
         </t>
     </t>
     

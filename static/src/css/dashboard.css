@@ -1,159 +1,143 @@
 .main.clearfix{
-	padding-right: 77px;
+    padding-right: 77px;
     margin-left: 0px;
 }
 .cd-dropdown,
 .cd-select {
-	position: relative;
-	width: 50px;
-	margin: 20px auto;
-	display: block;
+    position: relative;
+    width: 50px;
+    display: block;
 }
 
 .cd-dropdown > span {
-	width: 100%;
+    width: 100%;
     height: 45px;
-	line-height: 45px;
-	color: #fff;
-	font-weight: 700;
-	font-size: 16px;
-	background: #6EC89B;
-	display: block;
-	padding: 0 45px 0 30px;
-	position: relative;
-	cursor: pointer;
-	border-top-left-radius: 3px;
+    line-height: 45px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    background: #6EC89B;
+    display: block;
+    padding: 0 45px 0 30px;
+    position: relative;
+    cursor: pointer;
+    border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     margin-top: 3px;
 }
 
 .cd-dropdown > span:after {
-	content: '\25BC';
-	position: absolute;
-	right: 0px;
-	top: 15%;
-	width: 15px;
-	text-align: center;
-	font-size: 10px;
-	padding: 10px;
-	height: 70%;
-	line-height: 15px;
+    content: '\25BC';
+    position: absolute;
+    right: 0px;
+    top: 15%;
+    width: 15px;
+    text-align: center;
+    font-size: 10px;
+    padding: 10px;
+    height: 70%;
+    line-height: 15px;
 }
 
 .cd-dropdown.cd-active > span:after {
-	content: '\25B2';
+    content: '\25B2';
 }
 
 .cd-dropdown ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: block;
-	position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
 }
 
 .cd-dropdown ul li {
-	display: block;
+    display: block;
 }
 
 .cd-dropdown ul li span {
-	width: 100%;
-	background: #fff;
-	line-height: 45px;
-	padding: 0 30px 0 45px;
-	display: block;
-	color: #bcbcbc;
-	cursor: pointer;
-	font-weight: 700;
-	border-top-left-radius: 3px;
+    width: 100%;
+    background: #fff;
+    line-height: 45px;
+    padding: 0 30px 0 45px;
+    display: block;
+    color: #bcbcbc;
+    cursor: pointer;
+    font-weight: 700;
+    border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
 
 .cd-dropdown > span,
 .cd-dropdown ul li span {
-	-webkit-backface-visibility: hidden;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .cd-dropdown > span span[class^="icon-"],
 .cd-dropdown > span span[class*=" icon-"]{
-	padding: 0 0px 0 15px;
+    padding: 0 0px 0 15px;
 }
-
-/* Select fallback styling */
 .cd-select {
-	border: 1px solid #ddd;
+    border: 1px solid #ddd;
 }
-
-
-
-
-/* .cd-dropdown > span,
-.cd-dropdown ul li:nth-last-child(-n+3) span {
-	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-} */
 
 .cd-dropdown ul {
-	position: absolute;
-	top: 0px;
-	width: 100%;
+    position: absolute;
+    top: 0px;
+    width: 100%;
 }
 
 .cd-dropdown ul li {
-	position: absolute;
-	width: 100%;
+    position: absolute;
+    width: 100%;
 }
 
 .cd-active.cd-dropdown > span {
-	color: #fff;
+    color: #fff;
 }
 
-/* .cd-active.cd-dropdown > span,
 .cd-active.cd-dropdown ul li span {
-	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-} */
-
-.cd-active.cd-dropdown ul li span {
-	-webkit-transition: all 0.2s linear 0s;
-	-moz-transition: all 0.2s linear 0s;
-	-ms-transition: all 0.2s linear 0s;
-	-o-transition: all 0.2s linear 0s;
-	transition: all 0.2s linear 0s;
-	border-top-left-radius: 0px;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+    border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
 
 .cd-active.cd-dropdown ul li span:hover {
-	background: #6EC89B;
-	color: #fff;
+    background: #6EC89B;
+    color: #fff;
 }
 
 .cd-dropdown span[class^="icon-"]:before, 
 .cd-dropdown span[class*=" icon-"]:before {
-	font-family: 'FontAwesome';
-	font-style: normal;
-	speak: none;
-	font-weight: normal;
-	position: absolute;
-	font-size: 20px;
-	line-height: 40px;
-	width: 50px;
-	top: 50%;
-	left: 0px;
-	margin-top: -20px;
-	text-align: center;
+    font-family: 'FontAwesome';
+    font-style: normal;
+    speak: none;
+    font-weight: normal;
+    position: absolute;
+    font-size: 20px;
+    line-height: 40px;
+    width: 50px;
+    top: 50%;
+    left: 0px;
+    margin-top: -20px;
+    text-align: center;
 }
 
 .icon-return:before {
-	content: "\f112";
+    content: "\f112";
 }
 .icon-shop:before {
-	content: "\f290 ";
+    content: "\f290 ";
 }
 
 
