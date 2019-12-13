@@ -77,24 +77,30 @@
     
     <t t-name="Product">
         <t t-jquery=".product" t-operation="replace">
-            <span class='product' t-att-data-product-id="product.id" t-att-data-line-id="product.line_id">
+             <article class='product' t-att-data-product-id="product.id" t-att-data-line-id="product.line_id">
                 <div class="product-img">
-                    <img t-att-src='image_url' /> 
+                    <img t-att-src='image_url' alt="Product image"/>
                     <t t-if="!product.to_weight">
                         <span class="price-tag">
-                            <t t-if='product.rqty'><t t-esc='product.rqty'></t> x </t><t t-esc="widget.format_currency(product.price,'Product Price')"/>
+                            <t t-if='product.rqty'><t t-esc='product.rqty'></t> x <t t-esc="widget.format_currency(product.price,'Product Price')"/></t>
+                            <t t-else="">
+                                <t t-esc="widget.format_currency(product.get_price(pricelist, 1),'Product Price')"/>
+                            </t>
                         </span>
                     </t>
                     <t t-if="product.to_weight">
                         <span class="price-tag">
-                            <t t-if='product.rqty'><t t-esc='product.rqty'></t> x </t><t t-esc="widget.format_currency(product.price,'Product Price')+'/'+widget.pos.units_by_id[product.uom_id[0]].name"/>
+                            <t t-if='product.rqty'><t t-esc='product.rqty'></t> x <t t-esc="widget.format_currency(product.price,'Product Price')"/></t>
+                            <t t-else="">
+                                <t t-esc="widget.format_currency(product.get_price(pricelist, 1),'Product Price')+'/'+widget.pos.units_by_id[product.uom_id[0]].name"/>
+                            </t>
                         </span>
                     </t>
                 </div>
-                <div class="product-name">
+                <div class="product-name" t-attf-id="article_product_#{product.id}">
                     <t t-esc="product.display_name"/>
                 </div>
-            </span>
+            </article>
         </t>
     </t>
     

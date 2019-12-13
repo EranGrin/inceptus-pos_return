@@ -144,8 +144,8 @@ odoo.define('pos_return.return_screens', function (require) {
                         selectedOrder.destroy({'reason':'abandon'});
                     }
                     delete pos.get('selectedOrder')['return_order'];
-                    var products = pos.db.get_product_by_category(0);
-                    super_self.product_list_widget.set_product_list(products);
+                    // var products = pos.db.get_product_by_category(0);
+                    // super_self.product_list_widget.set_product_list(products);
                     pos.get('selectedOrder')['pos_mode'] = 'sale';
                 }
                 else if ($(this).data('value') === 2){
@@ -196,12 +196,15 @@ odoo.define('pos_return.return_screens', function (require) {
         },
         render_product: function(product){
             this._super(product);
+            var current_pricelist = this._get_active_pricelist();
+            // var cache_key = this.calculate_cache_key(product, current_pricelist);
             var cached = false;
             if(!cached){
                 var image_url = this.get_product_image_url(product);
                 var product_html = QWeb.render('Product',{ 
                         widget:  this, 
                         product: product, 
+                        pricelist: current_pricelist,
                         image_url: this.get_product_image_url(product),
                     });
                 var product_node = document.createElement('div');
