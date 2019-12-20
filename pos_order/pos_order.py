@@ -95,25 +95,33 @@ class PosOrder(models.Model):
             ro_val = 1
             parent_order_id = self.env['pos.order'].browse(ui_order.get('parent_order_id'))
             pos_reference = parent_order_id and ('Return ' + parent_order_id.pos_reference) or ui_order['name']
-            session = self.env['pos.session'].browse(ui_order['pos_session_id'])
-            ui_order.pop('name')
-            # name = session.config_id.sequence_id._next()
+            # session = self.env['pos.session'].browse(ui_order['pos_session_id'])
             ui_order.update({
                 'pos_reference': parent_order_id and ('Return ' + parent_order_id.pos_reference) or ui_order['name'],
-                # 'name': session.config_id.sequence_id._next(),
             })
+            for line in ui_order['lines']:
+                if len(line) >= 2:
+                    line[2].update({
+                        'qty': -line[2].get('qty', -1),
+                        'price_subtotal': -line[2].get('price_subtotal', -1),
+                        'price_subtotal_incl': -line[2].get('price_subtotal_incl', -1),
+                    })
+            # ui_order.pop('name')
         res = super(PosOrder, self.with_context(return_order=ro_val))._order_fields(ui_order)
+        session = self.env['pos.session'].browse(res['session_id'])
         if ui_order.get('parent_order_id'):
             for statement in ui_order.get('statement_ids'):
                 if statement[2].get('amount'):
                     statement[2]['amount'] = statement[2].get('amount') * -1
             res.update({'return_order': 1,
                         'parent_order_id': ui_order['parent_order_id'],
-                        'amount_return': ui_order['amount_paid'],
-                        'amount_paid': ui_order['amount_paid'],
+                        'amount_return': -ui_order['amount_paid'],
+                        'amount_paid': -ui_order['amount_paid'],
                         'pos_reference': pos_reference,
-                        # 'name': name,
-            })
+                        'name': session.config_id.sequence_id._next(),
+                        'amount_total': -res.get('amount_total', 0.0),
+                        'amount_paid': -res.get('amount_paid', 0.0),
+                        })
         return res
 
     @api.model
@@ -131,8 +139,8 @@ class PosOrderLine(models.Model):
         if self._context.get("return_order"):
             if line and line[2].get('qty'):
                 line[2]['qty'] = line[2]['qty'] * -1.0
-                line[2]['price_subtotal'] = line[2]['price_subtotal'] * -1.0
-                line[2]['price_subtotal_incl'] = line[2]['price_subtotal_incl'] * -1.0
+                line[2]['price_subtotal'] = -line[2]['price_subtotal']
+                line[2]['price_subtotal_incl'] = -line[2]['price_subtotal_incl']
         return res
 
     @api.depends('child_line_ids', 'order_id.child_order_ids')

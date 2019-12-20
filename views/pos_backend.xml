@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="ies_pos_order_filter_inherit" model="ir.ui.view">
+    <!-- <record id="ies_pos_order_filter_inherit" model="ir.ui.view">
         <field name="name">pos.order.filter.inherit</field>
         <field name="model">pos.order</field>
         <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
@@ -9,12 +9,12 @@
             <xpath expr="//field[@name='name']" position="replace">
                 <field name="pos_reference" />
             </xpath>
-            <!-- <xpath expr="//search/group/filter[last()]" position="after">
+            <xpath expr="//search/group/filter[last()]" position="after">
                 <filter string="Receipt Ref" domain="[]"
                     context="{'group_by':'pos_reference'}" />
-            </xpath> -->
+            </xpath>
         </field>
-    </record>
+    </record> -->
     <record id="ies_view_pos_return_form" model="ir.ui.view">
         <field name="name">inceptus.pos.order.form.iherit</field>
         <field name="model">pos.order</field>

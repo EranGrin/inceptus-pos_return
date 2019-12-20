@@ -9,7 +9,7 @@
         This module is used to return the products to the customer from POS Interface.
     """,
     'summary': 'POS Frontend & Backend product return',
-    'author' : 'Inceptus.io',
+    'author': 'Inceptus.io',
     'website': 'http://www.inceptus.io',
     'depends': ['web', 'point_of_sale', 'inceptus-base'],
     'data': [
